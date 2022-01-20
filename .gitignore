@@ -1,0 +1,5 @@
+!.gitignore
+*.toml
+config.*.toml
+.idea/
+*.exe

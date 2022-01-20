@@ -1,0 +1,24 @@
+info:
+  contact: {}
+  license: {}
+paths:
+  /say-hello:
+    get:
+      consumes:
+      - application/json
+      description: sayHello
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: httpServer
+      tags:
+      - httpServer相关
+swagger: "2.0"
