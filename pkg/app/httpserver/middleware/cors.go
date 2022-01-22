@@ -15,14 +15,14 @@ func Cors() gin.HandlerFunc {
 		}
 		c.Writer.Header().Set("Access-Control-Allow-Origin", origin)
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, Content-Length")
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, PUT, PATCH, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, PUT, PATCH, DELETE, OPTIONS, HEAD")
 		c.Writer.Header().Set("Access-Control-Expose-Headers", "Content-Length, Access-Control-Allow-Origin, "+
 			"Access-Control-Allow-Headers, Content-Type, Authorization")
 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
 
 		//为解决浏览器跨域options探测
 		if c.Request.Method == http.MethodOptions {
-			c.Writer.WriteHeader(http.StatusOK)
+			c.Writer.WriteHeader(http.StatusNoContent)
 			c.Abort()
 			return
 		}
