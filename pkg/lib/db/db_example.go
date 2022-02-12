@@ -6,19 +6,21 @@ import (
 
 //ExampleUsage 使用示例
 func ExampleUsage() {
-	fields := DsnFields{
+	conf := Conf{
 		DriverName: "mysql",
-		Host:       "localhost",
-		Port:       3306,
-		Database:   "default",
-		Username:   "fool",
-		Password:   "bar",
-		Charset:    "utf8mb4",
-		ParseTime:  true,
-		Loc:        "Local",
+		Mysql: MysqlConf{
+			Host:      "localhost",
+			Port:      3306,
+			Database:  "default",
+			Username:  "fool",
+			Password:  "bar",
+			Charset:   "utf8mb4",
+			ParseTime: true,
+			Loc:       "Local",
+		},
 	}
 
-	InitDB(fields)
+	InitDB(conf)
 
 	var user models.User
 	GetInstance().Model(&models.User{}).First(&user)

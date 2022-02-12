@@ -14,11 +14,13 @@
 ├── README.md
 ├── cmd
 │   ├── httpserver.go
+│   ├── grpcserver.go
 │   ├── root.go
 │   └── version.go
 ├── documents
 │   ├── demo_2
 │   └── httpserver
+│   └── grpcserver
 ├── go.mod
 ├── go.sum
 ├── logs
@@ -47,9 +49,24 @@ go run main httpserver -c path/to/your/config.toml
 
 # 编译后
 app-template httpserver -c path/to/your/config.toml 
-```  
+``` 
 
-2.demo_2
+2.grpcserver
+```text  
+grpcserver是...
+```  
+> [README.md](./documents/grpcserver/README.md)
+
+- 调用命名
+```shell
+# 未编译时
+go run main grpcserver -c path/to/your/config.toml
+
+# 编译后
+app-template grpcserver -c path/to/your/config.toml 
+``` 
+
+3.demo_2
 ```text  
 demo_2是...
 ```  

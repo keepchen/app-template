@@ -16,17 +16,19 @@ type MysqlConf struct {
 	Username  string `yaml:"username" toml:"username" json:"username"`                   //用户名
 	Password  string `yaml:"password" toml:"password" json:"password"`                   //密码
 	Database  string `yaml:"database" toml:"database" json:"database"`                   //数据库名
+	Charset   string `yaml:"charset" toml:"charset" json:"charset"`                      //字符集
 	ParseTime bool   `yaml:"parseTime" toml:"parseTime" json:"parseTime" default:"true"` //是否解析时间
 	Loc       string `yaml:"loc" toml:"loc" json:"loc" default:"Local"`                  //位置
 }
 
 type PostgresConf struct {
-	Host     string `yaml:"host" toml:"host" json:"host" default:"localhost"` //主机地址
-	Port     int    `yaml:"port" toml:"port" json:"port" default:"3306"`      //端口
-	Username string `yaml:"username" toml:"username" json:"username"`         //用户名
-	Password string `yaml:"password" toml:"password" json:"password"`         //密码
-	Database string `yaml:"database" toml:"database" json:"database"`         //数据库名
-	SSLMode  string `yaml:"ssl_mode" toml:"ssl_mode" json:"ssl_mode"`         //ssl模式
+	Host     string `yaml:"host" toml:"host" json:"host" default:"localhost"`                 //主机地址
+	Port     int    `yaml:"port" toml:"port" json:"port" default:"3306"`                      //端口
+	Username string `yaml:"username" toml:"username" json:"username"`                         //用户名
+	Password string `yaml:"password" toml:"password" json:"password"`                         //密码
+	Database string `yaml:"database" toml:"database" json:"database"`                         //数据库名
+	SSLMode  string `yaml:"ssl_mode" toml:"ssl_mode" json:"ssl_mode"`                         //ssl模式 enable|disable
+	TimeZone string `yaml:"timezone" toml:"timezone" json:"timezone" default:"Asia/Shanghai"` //时区
 }
 
 type SqlserverConf struct {

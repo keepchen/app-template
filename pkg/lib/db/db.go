@@ -10,8 +10,8 @@ import (
 var dbInstance *gorm.DB
 
 //InitDB 初始化数据库连接
-func InitDB(fields DsnFields) {
-	dialect := fields.GenDialector()
+func InitDB(conf Conf) {
+	dialect := conf.GenDialector()
 	db, err := gorm.Open(dialect, &gorm.Config{})
 	if err != nil {
 		panic(err)
