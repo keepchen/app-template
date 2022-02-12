@@ -7,7 +7,7 @@ import (
 )
 
 //Cors 允许浏览器跨域请求
-func Cors() gin.HandlerFunc {
+func Cors(headers map[string]string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		origin := c.Request.Header.Get("Origin")
 		if len(origin) == 0 {
@@ -20,7 +20,11 @@ func Cors() gin.HandlerFunc {
 			"Access-Control-Allow-Headers, Content-Type, Authorization")
 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
 
-		//为解决浏览器跨域options探测
+		for key, value := range headers {
+			c.Writer.Header().Set(key, value)
+		}
+
+		//处理浏览器跨域options探测请求
 		if c.Request.Method == http.MethodOptions {
 			c.Writer.WriteHeader(http.StatusNoContent)
 			c.Abort()

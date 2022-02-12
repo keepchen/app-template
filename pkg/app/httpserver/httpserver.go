@@ -3,17 +3,18 @@ package httpserver
 import (
 	"context"
 	"fmt"
-	"github.com/keepchen/app-template/pkg/app/httpserver/config"
-	"github.com/keepchen/app-template/pkg/app/httpserver/routes"
-	"go.uber.org/zap"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
+
+	"github.com/keepchen/app-template/pkg/app/httpserver/config"
+	"github.com/keepchen/app-template/pkg/app/httpserver/routes"
+	"go.uber.org/zap"
 )
 
-//StartApiServer 启动api服务
-func StartApiServer(logger *zap.Logger, wg *sync.WaitGroup, cfg *config.Config) {
+//StartHttpServer 启动http服务
+func StartHttpServer(logger *zap.Logger, wg *sync.WaitGroup, cfg *config.Config) {
 	defer func() {
 		if err := recover(); err != nil {
 			logger.Error("---- Recovered ----", zap.Any("error", err))

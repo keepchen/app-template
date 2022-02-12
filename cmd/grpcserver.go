@@ -5,25 +5,27 @@ import (
 
 	"github.com/keepchen/app-template/pkg/lib/logger"
 
-	"github.com/keepchen/app-template/pkg/app/httpserver"
-	"github.com/keepchen/app-template/pkg/app/httpserver/config"
 	"github.com/keepchen/app-template/pkg/utils"
+
+	"github.com/keepchen/app-template/pkg/app/grpcserver"
+
+	"github.com/keepchen/app-template/pkg/app/grpcserver/config"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
 )
 
-func httpServerCMD() *cobra.Command {
+func grpcServerCMD() *cobra.Command {
 	var cmd = &cobra.Command{
-		Use:   "httpserver",
-		Short: "启动http服务",
+		Use:   "grpcserver",
+		Short: "启动grpc服务",
 		Run: func(cmd *cobra.Command, args []string) {
 			//启动时要执行的操作写在这里
-			loggerSvc := zap.L().With(zap.String("serve", "[httpserver]"))
+			loggerSvc := zap.L().With(zap.String("serve", "[grpcserver]"))
 			wg := &sync.WaitGroup{}
 
-			//启动http接口服务
+			//启动grpc接口服务
 			wg.Add(1)
-			go httpserver.StartHttpServer(loggerSvc, wg, config.C)
+			go grpcserver.StartGrpcServer(loggerSvc, wg, config.C)
 
 			//更多服务...
 			utils.ListeningExitSignal(loggerSvc, wg)
@@ -40,5 +42,5 @@ func httpServerCMD() *cobra.Command {
 }
 
 func init() {
-	RootCMD.AddCommand(httpServerCMD())
+	RootCMD.AddCommand(grpcServerCMD())
 }

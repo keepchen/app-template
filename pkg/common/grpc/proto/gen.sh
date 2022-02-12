@@ -1,7 +1,7 @@
 #!/bin/sh
 PROTO_FILES=""
 
-WORKDIR="pkg/common/proto/"
+WORKDIR="pkg/common/grpc/proto/"
 
 # shellcheck disable=SC2164
 cd ${WORKDIR}

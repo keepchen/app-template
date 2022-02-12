@@ -13,7 +13,7 @@ type Config struct {
 	Debug      bool           `yaml:"debug" toml:"debug" json:"debug"`                   //是否是调试模式
 	Secret     SecretConf     `yaml:"secret" toml:"secret" json:"secret"`                //密钥配置
 	Logger     logger.Conf    `yaml:"logger" toml:"logger" json:"logger"`                //日志
-	HttpServer HttpServerConf `yaml:"http_server" toml:"http_server" json:"http_server"` //http服务配置
+	GrpcServer GrpcServerConf `yaml:"grpc_server" toml:"grpc_server" json:"grpc_server"` //grpc服务配置
 	DB         db.Conf        `yaml:"db" toml:"db" json:"db"`                            //数据库配置
 	Redis      redis.Conf     `yaml:"redis" toml:"redis" json:"redis"`                   //redis配置
 }
@@ -25,8 +25,8 @@ type SecretConf struct {
 	PrivateKeyBytes    []byte `yaml:"-" toml:"-" json:"-"`
 }
 
-type HttpServerConf struct {
-	Addr string `yaml:"addr" toml:"addr" json:"addr" default:":8080"` //监听地址
+type GrpcServerConf struct {
+	Addr string `yaml:"addr" toml:"addr" json:"addr" default:":8081"` //监听地址
 }
 
 var C = &Config{}
