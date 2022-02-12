@@ -23,7 +23,7 @@ type MysqlConf struct {
 
 type PostgresConf struct {
 	Host     string `yaml:"host" toml:"host" json:"host" default:"localhost"`                 //主机地址
-	Port     int    `yaml:"port" toml:"port" json:"port" default:"3306"`                      //端口
+	Port     int    `yaml:"port" toml:"port" json:"port" default:"9920"`                      //端口
 	Username string `yaml:"username" toml:"username" json:"username"`                         //用户名
 	Password string `yaml:"password" toml:"password" json:"password"`                         //密码
 	Database string `yaml:"database" toml:"database" json:"database"`                         //数据库名
@@ -33,7 +33,7 @@ type PostgresConf struct {
 
 type SqlserverConf struct {
 	Host     string `yaml:"host" toml:"host" json:"host" default:"localhost"` //主机地址
-	Port     int    `yaml:"port" toml:"port" json:"port" default:"3306"`      //端口
+	Port     int    `yaml:"port" toml:"port" json:"port" default:"9930"`      //端口
 	Username string `yaml:"username" toml:"username" json:"username"`         //用户名
 	Password string `yaml:"password" toml:"password" json:"password"`         //密码
 	Database string `yaml:"database" toml:"database" json:"database"`         //数据库名
@@ -45,7 +45,7 @@ type SqliteConf struct {
 
 type ClickhouseConf struct {
 	Host         string `yaml:"host" toml:"host" json:"host" default:"localhost"`                     //主机地址
-	Port         int    `yaml:"port" toml:"port" json:"port" default:"3306"`                          //端口
+	Port         int    `yaml:"port" toml:"port" json:"port" default:"9000"`                          //端口
 	Username     string `yaml:"username" toml:"username" json:"username"`                             //用户名
 	Password     string `yaml:"password" toml:"password" json:"password"`                             //密码
 	Database     string `yaml:"database" toml:"database" json:"database"`                             //数据库名
