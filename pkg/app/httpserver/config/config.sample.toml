@@ -1,0 +1,79 @@
+# config.sample.toml
+# 配置文件模板，具体配置请创建此文件副本并按需修改
+
+# 调试模式
+debug = true
+
+# 密钥配置
+[secret]
+# 公钥文件
+public_key_filename = "static/certifications/rsa_public_key.pem"
+# 私钥文件
+private_key_filename = "static/certifications/rsa_private_key.pem"
+
+# zap日志组件配置
+[logger]
+# 日志环境 dev,prod
+env = "dev"
+# 日志级别 debug,info,warn,error,fatal
+level = "info"
+# 日志文件名称 需要跟上路径
+filename = "logs/running.log"
+
+# http服务配置
+[http_server]
+addr = ":8080"
+
+# 数据库配置
+[db]
+driver_name = "mysql"
+
+# mysql配置
+[db.mysql]
+host = "localhost"
+port = 3306
+username = "fool"
+password = "bar"
+database = "default"
+charset = "utf8mb4"
+parse_time = true
+loc = "Local"
+
+# postgres配置
+[db.postgres]
+host = "localhost"
+port = 9920
+username = "fool"
+password = "bar"
+database = "default"
+ssl_mode = "disable" # enable | disable
+timezone = "Asia/Shanghai"
+
+# sqlserver配置
+[db.sqlserver]
+host = "localhost"
+port = 9930
+username = "fool"
+password = "bar"
+database = "default"
+
+# clickhouse配置
+[db.clickhouse]
+host = "localhost"
+port = 9000
+username = "fool"
+password = "bar"
+database = "default"
+read_timeout = 20
+write_timeout = 20
+
+# sqlite配置
+[db.sqlite]
+file = "sqlite.db"
+
+# redis配置
+[redis]
+host = "localhost"
+port = 6379
+password = ""
+database = 0

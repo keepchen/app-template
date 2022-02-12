@@ -1,5 +1,6 @@
 !.gitignore
 *.toml
 config.*.toml
+!pkg/app/**/config/config.sample.toml
 .idea/
 *.exe
