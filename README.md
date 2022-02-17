@@ -1,5 +1,6 @@
-#### app-template项目说明  
+# app-template  
 
+#### 项目说明
 ```text
 简单的整合了一套(个人认为)较为清爽的项目结构。该项目结构支持单项目多应用方式，打包的
 时候all in one，通过sub-command的方式分别启动。不同应用通过注入对应启动命令，在调
@@ -10,17 +11,18 @@
 ```text
 .
 ├── Dockerfile
+├── LICENSE
 ├── Makefile
 ├── README.md
 ├── cmd
-│   ├── httpserver.go
 │   ├── grpcserver.go
+│   ├── httpserver.go
 │   ├── root.go
 │   └── version.go
 ├── documents
 │   ├── demo_2
+│   ├── grpcserver
 │   └── httpserver
-│   └── grpcserver
 ├── go.mod
 ├── go.sum
 ├── logs

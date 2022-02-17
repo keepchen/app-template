@@ -1,12 +1,13 @@
 package config
 
 import (
+	"log"
+
 	"github.com/jinzhu/configor"
 	"github.com/keepchen/app-template/pkg/lib/db"
 	"github.com/keepchen/app-template/pkg/lib/logger"
 	"github.com/keepchen/app-template/pkg/lib/redis"
 	"github.com/keepchen/app-template/pkg/utils"
-	"go.uber.org/zap"
 )
 
 type Config struct {
@@ -56,5 +57,7 @@ func ParseConfig(cfgPath string) {
 	}
 	C.Secret.PrivateKeyBytes = pri
 
-	zap.L().Named("configor").Info("loaded config", zap.Any("config", C))
+	if C.Debug {
+		log.Println("loaded config:", C)
+	}
 }
