@@ -1,4 +1,6 @@
-# App-Template
+# App-Template  
+
+![build status](https://github.com/keepchen/app-template/actions/workflows/go.yml/badge.svg)
 
 #### 项目说明  
 
