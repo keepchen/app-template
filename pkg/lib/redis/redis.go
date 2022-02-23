@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/go-redis/redis/v8"
+	redisLib "github.com/go-redis/redis/v8"
 )
 
 //OptionsFields 配置项字段
@@ -15,11 +15,11 @@ type OptionsFields struct {
 	Database int    //库序号
 }
 
-var redisInstance *redis.Client
+var redisInstance *redisLib.Client
 
 //InitRedis 初始化redis连接
 func InitRedis(opts OptionsFields) {
-	rdb := redis.NewClient(&redis.Options{
+	rdb := redisLib.NewClient(&redisLib.Options{
 		Addr:     fmt.Sprintf("%s:%d", opts.Host, opts.Port),
 		Password: opts.Password,
 		DB:       opts.Database,
@@ -34,6 +34,6 @@ func InitRedis(opts OptionsFields) {
 }
 
 //GetInstance 获取redis连接实例
-func GetInstance() *redis.Client {
+func GetInstance() *redisLib.Client {
 	return redisInstance
 }

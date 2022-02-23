@@ -1,9 +1,12 @@
-package utils
+package jwt
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
+
+	jwtLib "github.com/golang-jwt/jwt"
 )
 
 var (
@@ -47,34 +50,56 @@ QwIDAQAB
 -----END PUBLIC KEY-----`)
 )
 
-func TestRSAEncode(t *testing.T) {
-	encodedString, err := RSAEncrypt(rawString, publicKey)
-	t.Log(encodedString)
-	assert.NoError(t, err)
+var (
+	confArr = []Conf{
+		{
+			Algorithm:  string(SigningMethodHS512),
+			HmacSecret: "a-b-c-d-e-f-g",
+		},
+		{
+			Algorithm:  string(SigningMethodRS256),
+			PrivateKey: string(privateKey),
+			PublicKey:  string(publicKey),
+		},
+		{
+			Algorithm:  string(SigningMethodRS512),
+			PrivateKey: string(privateKey),
+			PublicKey:  string(publicKey),
+		},
+	}
+
+	appClaim = AppClaims{
+		Name: "test",
+		StandardClaims: jwtLib.StandardClaims{
+			ExpiresAt: time.Now().Unix() + 1500,
+			Issuer:    defaultTokenIssuer,
+		},
+	}
+)
+
+func TestSign(t *testing.T) {
+	for _, conf := range confArr {
+		t.Log("----------------", conf.Algorithm, "----------------")
+		conf.Load()
+		token, err := Sign(appClaim, conf)
+		t.Log(err)
+		t.Log(token)
+		assert.NoError(t, err)
+	}
 }
 
-func TestRSADecode(t *testing.T) {
-	encodedString, err := RSAEncrypt(rawString, publicKey)
-	t.Log(encodedString)
-	assert.NoError(t, err)
-	decodedString, err := RSADecrypt(encodedString, privateKey)
-	t.Log(decodedString)
-	assert.NoError(t, err)
-	assert.Equal(t, decodedString, rawString)
-}
+func TestVerify(t *testing.T) {
+	for _, conf := range confArr {
+		t.Log("----------------", conf.Algorithm, "----------------")
+		conf.Load()
+		token, err := Sign(appClaim, conf)
+		t.Log(err)
+		t.Log(token)
+		assert.NoError(t, err)
 
-func TestRSASign(t *testing.T) {
-	sign, err := RSASign([]byte(rawString), privateKey)
-	t.Log(Base64Encode([]byte(sign)))
-	assert.NoError(t, err)
-}
-
-func TestRSAVerifySign(t *testing.T) {
-	sign, err := RSASign([]byte(rawString), privateKey)
-	t.Log(sign)
-	assert.NoError(t, err)
-
-	ok, err := RSAVerifySign([]byte(rawString), []byte(sign), publicKey)
-	assert.NoError(t, err)
-	assert.Equal(t, true, ok)
+		claim, err := Verify(token, conf)
+		t.Log(err)
+		t.Log(claim)
+		assert.NoError(t, err)
+	}
 }

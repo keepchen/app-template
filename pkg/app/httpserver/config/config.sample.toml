@@ -4,12 +4,18 @@
 # 调试模式
 debug = true
 
-# 密钥配置
-[secret]
-# 公钥文件
-public_key_filename = "static/certifications/rsa_public_key.pem"
-# 私钥文件
-private_key_filename = "static/certifications/rsa_private_key.pem"
+# jwt密钥配置
+[jwt]
+# 公钥文件或字符串
+public_key = ""
+# 私钥文件或字符串
+private_key = ""
+# 加密算法: RS256 | RS512 | HS512
+algorithm = "RS256"
+# 密钥，当algorithm = "HS512"时需要配置此项
+hmac_secret = "example"
+# 令牌颁发者
+token_issuer = "authority"
 
 # zap日志组件配置
 [logger]

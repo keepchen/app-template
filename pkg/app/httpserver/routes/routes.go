@@ -3,6 +3,12 @@ package routes
 import (
 	"context"
 	"errors"
+	"net/http"
+	"os"
+	"os/signal"
+	"sync"
+	"syscall"
+
 	"github.com/gin-gonic/gin"
 	"github.com/keepchen/app-template/pkg/app/httpserver/config"
 	"github.com/keepchen/app-template/pkg/app/httpserver/docs"
@@ -11,11 +17,6 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/zap"
-	"net/http"
-	"os"
-	"os/signal"
-	"sync"
-	"syscall"
 
 	"github.com/gin-contrib/pprof"
 )
@@ -24,8 +25,8 @@ import (
 func RunServer(ctx context.Context, cfg *config.Config, wg *sync.WaitGroup) {
 	defer wg.Done()
 	//swagger配置
-	docs.SwaggerInfo.Title = "NFT metadata Server API"
-	docs.SwaggerInfo.Description = "This is a document for NFT server."
+	docs.SwaggerInfo.Title = "demo Server API"
+	docs.SwaggerInfo.Description = "This is a document for demo server."
 	docs.SwaggerInfo.BasePath = "/api/v1"
 	docs.SwaggerInfo.Host = cfg.HttpServer.Addr
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
@@ -50,6 +51,9 @@ func RunServer(ctx context.Context, cfg *config.Config, wg *sync.WaitGroup) {
 		api.Use(mdlw.AuthCheck()).
 			GET("/say-hello", handler.SayHello)
 	}
+	//@see https://gin-gonic.com/docs/examples/html-rendering/
+	r.LoadHTMLGlob("pkg/app/httpserver/templates/*")
+	r.GET("/", handler.Index)
 
 	//swagger 必须放在所有路由定义的最后
 	if cfg.Debug {

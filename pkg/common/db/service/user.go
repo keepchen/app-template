@@ -28,17 +28,17 @@ var NewUserSvcImpl = func(logger *zap.Logger, dbInstance *gorm.DB) *UserSvcImpl 
 }
 
 //GetUserList 获取用户列表
-func (u *UserSvcImpl) GetUserList(page, count int) ([]*models.User, error) {
+func (u *UserSvcImpl) GetUserList(pageNumber, pageSize int) ([]*models.User, error) {
 	var userList []*models.User
-	if page < 1 {
-		page = 0
+	if pageNumber < 1 {
+		pageNumber = 0
 	} else {
-		page -= 1
+		pageNumber -= 1
 	}
-	if count < 1 || count > 100 {
-		count = 100
+	if pageSize < 1 || pageSize > 100 {
+		pageSize = 100
 	}
-	err := u.dbInstance.Model(&models.User{}).Limit(count).Offset(page * count).Find(&userList).Error
+	err := u.dbInstance.Model(&models.User{}).Limit(pageSize).Offset(pageNumber * pageSize).Find(&userList).Error
 
 	return userList, err
 }

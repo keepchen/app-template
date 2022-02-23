@@ -20,6 +20,7 @@ func AuthCheck() gin.HandlerFunc {
 			return
 		}
 		//to do something
+
 		c.Next()
 	}
 }

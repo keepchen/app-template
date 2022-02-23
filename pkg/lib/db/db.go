@@ -12,12 +12,12 @@ var dbInstance *gorm.DB
 //InitDB 初始化数据库连接
 func InitDB(conf Conf) {
 	dialect := conf.GenDialector()
-	db, err := gorm.Open(dialect, &gorm.Config{})
+	dbPtr, err := gorm.Open(dialect, &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
 
-	sqlDB, err := db.DB()
+	sqlDB, err := dbPtr.DB()
 	if err != nil {
 		panic(err)
 	}
@@ -26,7 +26,7 @@ func InitDB(conf Conf) {
 	sqlDB.SetMaxIdleConns(10)
 	sqlDB.SetMaxOpenConns(100)
 
-	dbInstance = db
+	dbInstance = dbPtr
 }
 
 //GetInstance 获取数据库实例

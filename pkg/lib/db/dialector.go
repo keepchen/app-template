@@ -27,69 +27,69 @@ const (
 //组装mysql的dsn
 //@see https://github.com/go-sql-driver/mysql#dsn-data-source-name for details
 //dsn := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
-func mysqlDsn(conf Conf) string {
-	if len(conf.Mysql.Charset) == 0 {
-		conf.Mysql.Charset = "utf8mb4"
+func mysqlDsn(conf MysqlConf) string {
+	if len(conf.Charset) == 0 {
+		conf.Charset = "utf8mb4"
 	}
-	if len(conf.Mysql.Loc) == 0 {
-		conf.Mysql.Loc = "Local"
+	if len(conf.Loc) == 0 {
+		conf.Loc = "Local"
 	}
 	var parseTime string
-	if conf.Mysql.ParseTime {
+	if conf.ParseTime {
 		parseTime = "True"
 	} else {
 		parseTime = "False"
 	}
 
 	return fmt.Sprintf("%s:%s@tcp(%s:%d)%s?charset=%s&parseTime=%s&loc=%s",
-		conf.Mysql.Username, conf.Mysql.Password, conf.Mysql.Host, conf.Mysql.Port,
-		conf.Mysql.Database, conf.Mysql.Charset, parseTime, conf.Mysql.Loc)
+		conf.Username, conf.Password, conf.Host, conf.Port,
+		conf.Database, conf.Charset, parseTime, conf.Loc)
 }
 
 //组装postgres的dsn
 //dsn := "host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai"
-func postgresDsn(conf Conf) string {
+func postgresDsn(conf PostgresConf) string {
 	return fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=%s TimeZone=%s",
-		conf.Postgres.Host, conf.Postgres.Username, conf.Postgres.Password, conf.Postgres.Database,
-		conf.Postgres.Port, conf.Postgres.SSLMode, conf.Postgres.TimeZone)
+		conf.Host, conf.Username, conf.Password, conf.Database,
+		conf.Port, conf.SSLMode, conf.TimeZone)
 }
 
 //组装sqlite的dsn
 //dsn := "sqlite.db"
-func sqliteDsn(conf Conf) string {
-	return conf.Sqlite.File
+func sqliteDsn(conf SqliteConf) string {
+	return conf.File
 }
 
 //组装sqlserver的dsn
 //dsn := "sqlserver://gorm:LoremIpsum86@localhost:9930?database=gorm"
-func sqlserverDsn(conf Conf) string {
+func sqlserverDsn(conf SqlserverConf) string {
 	return fmt.Sprintf("sqlserver://%s:%s@%s:%d?database=%s",
-		conf.Sqlserver.Username, conf.Sqlserver.Password, conf.Sqlserver.Host,
-		conf.Sqlserver.Port, conf.Sqlserver.Database)
+		conf.Username, conf.Password, conf.Host,
+		conf.Port, conf.Database)
 }
 
 //组装clickhouse的dsn
 //dsn := "tcp://localhost:9000?database=gorm&username=gorm&password=gorm&read_timeout=10&write_timeout=20"
-func clickhouseDsn(conf Conf) string {
+func clickhouseDsn(conf ClickhouseConf) string {
 	return fmt.Sprintf("tcp://%s:%d?database=%s&username=%s&password=%s&read_timeout=%d&write_timeout=%d",
-		conf.Clickhouse.Host, conf.Clickhouse.Port, conf.Clickhouse.Database,
-		conf.Clickhouse.Username, conf.Clickhouse.Password,
-		conf.Clickhouse.ReadTimeout, conf.Clickhouse.WriteTimeout)
+		conf.Host, conf.Port, conf.Database,
+		conf.Username, conf.Password,
+		conf.ReadTimeout, conf.WriteTimeout)
 }
 
 //GenDialector 生成数据库连接方言(驱动)
 func (conf Conf) GenDialector() gorm.Dialector {
 	switch strings.ToLower(conf.DriverName) {
 	case DriverNameMysql:
-		return mysql.Open(mysqlDsn(conf))
+		return mysql.Open(mysqlDsn(conf.Mysql))
 	case DriverNamePostgres:
-		return postgres.Open(postgresDsn(conf))
+		return postgres.Open(postgresDsn(conf.Postgres))
 	case DriverNameSqlite:
-		return sqlite.Open(sqliteDsn(conf))
+		return sqlite.Open(sqliteDsn(conf.Sqlite))
 	case DriverNameSqlserver:
-		return sqlserver.Open(sqlserverDsn(conf))
+		return sqlserver.Open(sqlserverDsn(conf.Sqlserver))
 	case DriverNameClickHouse:
-		return clickhouse.Open(clickhouseDsn(conf))
+		return clickhouse.Open(clickhouseDsn(conf.Clickhouse))
 	default:
 		panic("not supported database driver")
 	}
