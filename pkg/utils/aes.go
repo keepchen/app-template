@@ -9,6 +9,7 @@ import (
 	"io"
 )
 
+//KEY 密钥
 const KEY = "fakeKeyChangeMe!"
 
 //AesEncode aes加密

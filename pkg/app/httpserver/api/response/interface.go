@@ -2,6 +2,7 @@ package response
 
 import "github.com/keepchen/app-template/pkg/constants"
 
+//IResponse 统一返回接口
 type IResponse interface {
 	//Assemble 组装返回值给客户端
 	Assemble(code constants.CodeType, data interface{}) StandardResponse

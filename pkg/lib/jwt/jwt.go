@@ -21,12 +21,13 @@ const (
 	defaultTokenIssuer = "authority"
 )
 
+//SigningMethod 签名方法
 type SigningMethod string
 
 const (
-	SigningMethodRS256 SigningMethod = "RS256"
-	SigningMethodRS512 SigningMethod = "RS512"
-	SigningMethodHS512 SigningMethod = "HS512"
+	SigningMethodRS256 SigningMethod = "RS256" //SigningMethodRS256 rsa256方法
+	SigningMethodRS512 SigningMethod = "RS512" //SigningMethodRS512 rsa512方法
+	SigningMethodHS512 SigningMethod = "HS512" //SigningMethodHS512 hmac方法
 )
 
 func (sm SigningMethod) getSigningMethod() jwtLib.SigningMethod {

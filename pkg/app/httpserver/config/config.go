@@ -10,6 +10,7 @@ import (
 	"github.com/keepchen/app-template/pkg/lib/redis"
 )
 
+//Config 整体的配置信息
 type Config struct {
 	Debug      bool           `yaml:"debug" toml:"debug" json:"debug"`                   //是否是调试模式
 	Logger     logger.Conf    `yaml:"logger" toml:"logger" json:"logger"`                //日志
@@ -19,10 +20,12 @@ type Config struct {
 	JWT        jwt.Conf       `yaml:"jwt" toml:"jwt" json:"jwt"`                         //jwt配置
 }
 
+//HttpServerConf http服务配置
 type HttpServerConf struct {
 	Addr string `yaml:"addr" toml:"addr" json:"addr" default:":8080"` //监听地址
 }
 
+//C 全局配置变量
 var C = &Config{}
 
 //ParseConfig 解析配置

@@ -26,6 +26,7 @@ const versionInfoTmpl = `
   go version:   {{.goVersion}}
 `
 
+//PrintVersion 打印版本信息
 func PrintVersion() {
 	m := map[string]string{
 		"program":   appName,

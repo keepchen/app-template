@@ -39,7 +39,7 @@ func StartGrpcServer(logger *zap.Logger, wg *sync.WaitGroup, cfg *config.Config)
 
 	logger.Sugar().Infof("Start grpc server at: %s", cfg.GrpcServer.Addr)
 	//启动grpc服务
-	go RunGrpcServer(logger, ctx, cfg)
+	go RunGrpcServer(ctx, logger, cfg)
 
 	//收到退出信号
 	logger.Sugar().Warnf("Exit signal: %v", <-errChan)
@@ -49,7 +49,7 @@ func StartGrpcServer(logger *zap.Logger, wg *sync.WaitGroup, cfg *config.Config)
 }
 
 //RunGrpcServer 启动grpc服务
-func RunGrpcServer(logger *zap.Logger, ctx context.Context, cfg *config.Config) {
+func RunGrpcServer(ctx context.Context, logger *zap.Logger, cfg *config.Config) {
 	listener, err := net.Listen("tcp", cfg.GrpcServer.Addr)
 	if err != nil {
 		logger.Fatal("Start grpc server failed", zap.Errors("error", []error{err}))

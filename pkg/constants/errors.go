@@ -2,10 +2,12 @@ package constants
 
 import "fmt"
 
+//ICodeType 错误码类型接口
 type ICodeType interface {
 	GetMessage() string
 }
 
+//CodeType 错误码类型
 type CodeType int
 
 //错误码
