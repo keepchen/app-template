@@ -1,6 +1,8 @@
 # App-Template  
 
-![build status](https://github.com/keepchen/app-template/actions/workflows/go.yml/badge.svg)
+![build status](https://github.com/keepchen/app-template/actions/workflows/go.yml/badge.svg) 
+![CodeQL](https://github.com/keepchen/app-template/actions/workflows/codeql.yml/badge.svg) 
+[![Go Report Card](https://goreportcard.com/badge/github.com/keepchen/app-template)](https://goreportcard.com/report/github.com/keepchen/app-template)
 
 #### 项目说明  
 
