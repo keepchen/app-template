@@ -1,14 +1,13 @@
-# app-template
+# App-Template
 
-#### 项目说明
+#### 项目说明  
 
 ```text
-简单的整合了一套(个人认为)较为清爽的项目结构。该项目结构支持单项目多应用方式，打包的
-时候all in one，通过sub-command的方式分别启动。不同应用通过注入对应启动命令，在调
-用的时候，指定服务/功能即可调用。
+简单的整合了一套(个人认为)较为清爽的项目结构。该项目结构支持单项目多应用方式，打包的时候all in one，通过
+sub-command的方式分别启动。不同应用通过注入对应启动命令，在调用的时候，指定服务/功能即可调用。
 ```
 
-**文件目录**
+- 文件目录  
 
 ```text
 .
@@ -53,8 +52,10 @@ go mod tidy
 go run main.go httpserver -c pkg/app/httpserver/config/config.sample.toml  
 ```  
 
-**浏览器访问**  
+- 浏览器访问  
 [http://localhost:8080](http://localhost:8080)
+
+#### 服务说明  
 
 1.httpserver
 
@@ -64,7 +65,7 @@ httpserver是...
 
 > [README.md](./documents/httpserver/README.md)
 
-- 调用命名
+- 调用命令
 
 ```shell
 # 未编译时
@@ -82,7 +83,7 @@ grpcserver是...
 
 > [README.md](./documents/grpcserver/README.md)
 
-- 调用命名
+- 调用命令
 
 ```shell
 # 未编译时
