@@ -2,7 +2,6 @@ package jwt
 
 import (
 	"crypto/rsa"
-	"log"
 
 	jwtLib "github.com/golang-jwt/jwt"
 
@@ -30,10 +29,8 @@ func (c *Conf) Load() {
 	}
 
 	if utils.FileExists(c.PrivateKey) {
-		log.Println("xxxxxxxxxx")
 		contents, err := utils.FileGetContents(c.PrivateKey)
 		if err != nil {
-			log.Println("yyyyyyyyyyyy")
 			c.PrivateKey = string(contents)
 		}
 	}

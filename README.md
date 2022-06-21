@@ -8,7 +8,7 @@
 
 ```text
 简单的整合了一套(个人认为)较为清爽的项目结构。该项目结构支持单项目多应用方式，打包的时候all in one，通过
-sub-command的方式分别启动。不同应用通过注入对应启动命令，在调用的时候，指定服务/功能即可调用。
+sub-command的方式分别启动。不同应用通过注入对应启动命令，在调用的时候，指定服务/功能即可。
 ```
 
 - 文件目录  
@@ -57,7 +57,10 @@ go run main.go httpserver -c pkg/app/httpserver/config/config.sample.toml
 ```  
 
 - 浏览器访问  
-[http://localhost:8080](http://localhost:8080)
+[http://localhost:8080](http://localhost:8080)  
+
+- 截图  
+![screenshot.png](./static/pictures/screenshot.png)
 
 #### 服务说明  
 
@@ -77,7 +80,7 @@ go run main.go httpserver -c path/to/your/config.toml
 
 # 编译后
 app-template httpserver -c path/to/your/config.toml 
-``` 
+```
 
 2.grpcserver
 

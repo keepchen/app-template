@@ -59,6 +59,10 @@ func RunGrpcServer(ctx context.Context, logger *zap.Logger, cfg *config.Config) 
 	pb.RegisterGreeterServer(grpcServer, &handler.GreeterServer{})
 
 	go func() {
+		RunClient(cfg)
+	}()
+
+	go func() {
 		if err := grpcServer.Serve(listener); err != nil {
 			logger.Fatal("grpc serve failed", zap.Errors("error", []error{err}))
 		}
@@ -66,9 +70,9 @@ func RunGrpcServer(ctx context.Context, logger *zap.Logger, cfg *config.Config) 
 
 WATCHER:
 	for range ctx.Done() {
-		zap.L().Warn("Receive quit signal, shutting down grpc server")
+		logger.Warn("Receive quit signal, shutting down grpc server")
 		grpcServer.GracefulStop()
 		break WATCHER
 	}
-	zap.L().Warn("grpc server shutdown finished.")
+	logger.Warn("grpc server shutdown finished.")
 }

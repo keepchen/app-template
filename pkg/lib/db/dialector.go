@@ -19,7 +19,7 @@ const (
 	DriverNamePostgres   = "postgres"   //数据库类型标识:postgres sql
 	DriverNameSqlite     = "sqlite"     //数据库类型标识:sqlite
 	DriverNameSqlserver  = "sqlserver"  //数据库类型标识:sqlserver
-	DriverNameClickHouse = "clickhouse" //数据库类型标识:clickhouse
+	DriverNameClickhouse = "clickhouse" //数据库类型标识:clickhouse
 
 	//more ...
 )
@@ -88,7 +88,7 @@ func (conf Conf) GenDialector() gorm.Dialector {
 		return sqlite.Open(sqliteDsn(conf.Sqlite))
 	case DriverNameSqlserver:
 		return sqlserver.Open(sqlserverDsn(conf.Sqlserver))
-	case DriverNameClickHouse:
+	case DriverNameClickhouse:
 		return clickhouse.Open(clickhouseDsn(conf.Clickhouse))
 	default:
 		panic("not supported database driver")
