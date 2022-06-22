@@ -11,7 +11,7 @@ BUILD_TIME=$(shell date '+%Y-%m-%dT%H:%M:%S%Z')
 VCS_BRANCH=$(shell git symbolic-ref --short -q HEAD)
 
 # build args
-BUILD_ARGS := \
+BUILD_ARGS = \
     -ldflags "-X $(VERSION_IMPORT_PATH).appName=$(PACKAGE) \
     -X $(VERSION_IMPORT_PATH).version=$(VERSION) \
     -X $(VERSION_IMPORT_PATH).revision=$(COMMIT_ID) \

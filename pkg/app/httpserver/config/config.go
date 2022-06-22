@@ -14,10 +14,10 @@ import (
 type Config struct {
 	Debug      bool           `yaml:"debug" toml:"debug" json:"debug"`                   //是否是调试模式
 	Logger     logger.Conf    `yaml:"logger" toml:"logger" json:"logger"`                //日志
-	HttpServer HttpServerConf `yaml:"http_server" toml:"http_server" json:"http_server"` //http服务配置
 	DB         db.Conf        `yaml:"db" toml:"db" json:"db"`                            //数据库配置
 	Redis      redis.Conf     `yaml:"redis" toml:"redis" json:"redis"`                   //redis配置
 	JWT        jwt.Conf       `yaml:"jwt" toml:"jwt" json:"jwt"`                         //jwt配置
+	HttpServer HttpServerConf `yaml:"http_server" toml:"http_server" json:"http_server"` //http服务配置
 }
 
 //HttpServerConf http服务配置

@@ -4,7 +4,8 @@ import "fmt"
 
 //ICodeType 错误码类型接口
 type ICodeType interface {
-	GetMessage() string
+	String() string
+	Int() int
 }
 
 //CodeType 错误码类型
@@ -34,4 +35,9 @@ func (ct CodeType) String() string {
 	}
 
 	return fmt.Sprintf("[Warn] ErrorCode {%d} not defined!", ct)
+}
+
+//Int 获取错误码
+func (ct CodeType) Int() int {
+	return int(ct)
 }

@@ -14,7 +14,7 @@ func AuthCheck() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authorization := c.GetHeader("Authorization")
 		if len(authorization) == 0 {
-			respData := (&response.StandardResponse{}).Assemble(constants.ErrAuthorizationTokenInvalid, nil)
+			respData := (&response.JSONResponse{}).Assemble(constants.ErrAuthorizationTokenInvalid, nil)
 			c.JSON(http.StatusUnauthorized, respData)
 			c.Abort()
 			return

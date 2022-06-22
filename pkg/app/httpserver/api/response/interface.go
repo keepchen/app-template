@@ -1,11 +1,16 @@
 package response
 
-import "github.com/keepchen/app-template/pkg/constants"
+import (
+	"encoding/json"
 
-//IResponse 统一返回接口
-type IResponse interface {
+	"github.com/keepchen/app-template/pkg/constants"
+)
+
+type IStandardResponse interface {
 	//Assemble 组装返回值给客户端
 	Assemble(code constants.CodeType, data interface{}) StandardResponse
+	//GetData 获取数据
+	GetData() string
 }
 
 //StandardResponse 标准返回结构
@@ -28,4 +33,13 @@ func (sr *StandardResponse) Assemble(code constants.CodeType, data interface{}) 
 	sr.Data = data
 
 	return *sr
+}
+
+//GetData 获取数据
+func (sr *StandardResponse) GetData() string {
+	if byt, err := json.Marshal(sr); err == nil {
+		return string(byt)
+	}
+
+	return ""
 }
