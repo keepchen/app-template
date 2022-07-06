@@ -17,6 +17,7 @@ require (
 	go.uber.org/zap v1.17.0
 	golang.org/x/net v0.0.0-20211015210444-4f30a5c0130f
 	google.golang.org/grpc v1.42.0
+	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gorm.io/driver/clickhouse v0.2.2
 	gorm.io/driver/mysql v1.2.3
 	gorm.io/driver/postgres v1.2.3

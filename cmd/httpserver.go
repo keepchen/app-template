@@ -18,7 +18,8 @@ func httpServerCMD() *cobra.Command {
 		Short: "启动http服务",
 		Run: func(cmd *cobra.Command, args []string) {
 			//启动时要执行的操作写在这里
-			loggerSvc := zap.L().With(zap.String("serve", "[httpserver]"))
+			logSvc := logger.GetLogger()
+			loggerSvc := logSvc.With(zap.String("serve", "[httpserver]"))
 			wg := &sync.WaitGroup{}
 
 			//启动http接口服务

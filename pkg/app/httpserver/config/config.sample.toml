@@ -21,10 +21,16 @@ token_issuer = "authority"
 [logger]
 # 日志环境 dev,prod
 env = "dev"
-# 日志级别 debug,info,warn,error,fatal
+# 日志级别 debug,info,warn,error,dpanic,panic,fatal
 level = "info"
 # 日志文件名称 需要跟上路径
 filename = "logs/running.log"
+# 单文件日志大小限制，单位MB
+max_size = 100
+# 最大历史文件保留数量
+max_backups = 10
+# 是否压缩历史文件
+compress = true
 
 # http服务配置
 [http_server]

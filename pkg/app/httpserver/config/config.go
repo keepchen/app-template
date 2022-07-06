@@ -44,6 +44,6 @@ func ParseConfig(cfgPath string) {
 	C.JWT.Load()
 
 	if C.Debug {
-		log.Println("loaded config:", C)
+		log.Printf("loaded config: %#v", C)
 	}
 }

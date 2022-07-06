@@ -20,7 +20,8 @@ func grpcServerCMD() *cobra.Command {
 		Short: "启动grpc服务",
 		Run: func(cmd *cobra.Command, args []string) {
 			//启动时要执行的操作写在这里
-			loggerSvc := zap.L().With(zap.String("serve", "[grpcserver]"))
+			logSvc := logger.GetLogger()
+			loggerSvc := logSvc.With(zap.String("serve", "[grpcserver]"))
 			wg := &sync.WaitGroup{}
 
 			//启动grpc接口服务
